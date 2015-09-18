@@ -29,7 +29,7 @@ public class UsersController {
 		mav.setViewName("tiles/users/list");
 		logger.info("/users/list : end");
 		return mav;
-		//test
+		//test1
 	}
 	
 	
