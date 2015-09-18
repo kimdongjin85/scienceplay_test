@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ehcache="http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring
+        http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd
+	    http://www.springframework.org/schema/task 
+		http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/websocket
+		http://www.springframework.org/schema/websocket/spring-websocket-4.0.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd" >
+		
+	<!-- 파일 업로드 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+	<annotation-driven /> <!-- 일반 웹 어플리케이션에서 어노테이션을 사용할 수 있도록 기능부여 -->
+	<!--<ehcache:annotation-driven />  ehcache 어플리케이션에서 어노테이션을 사용할 수 있도록 기능부여 -->
+	
+	<!-- 내부 소스를 http로 접근이 가능하도록 지정 -->
+	<resources mapping="/resources/**" location="/resources/" />
+	
+	<!-- tiles -->
+	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+         <beans:property name="definitions">
+             <beans:list>
+                  <beans:value>/WEB-INF/tiles/tiles-layout.xml</beans:value>
+             </beans:list>
+         </beans:property>
+     </beans:bean>
+
+	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<beans:property name="order" value="1"></beans:property>
+		<beans:property name="viewNames" value="tiles/*"></beans:property>
+	</beans:bean>
+	
+	<!-- jsp view resolver -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/view/" />
+		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="2" />
+	</beans:bean>
+     
+	
+	<!-- RestTemplate bean -->
+	<beans:bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/>
+	<beans:bean id="asyncRestTemplate" class="org.springframework.web.client.AsyncRestTemplate"/>
+	 
+	<context:component-scan base-package="kr.co.msk" />
+	
+</beans:beans>

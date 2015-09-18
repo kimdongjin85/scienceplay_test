@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE tiles-definitions PUBLIC
+         "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="default" template="/WEB-INF/tiles/layouts/default-layout.jsp">
+		<put-attribute name="title" value="::::msk::::"/>
+		<put-attribute name="header" value="/WEB-INF/view/includes/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/includes/body.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/includes/footer.jsp" />
+	</definition>
+
+	<definition name="tiles/users/*" extends="default">
+		<put-attribute name="body" value="/WEB-INF/view/users/{1}.jsp" />
+	</definition>
+	
+</tiles-definitions>
+ 
