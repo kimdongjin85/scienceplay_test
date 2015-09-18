@@ -25,10 +25,11 @@ public class UsersController {
 		logger.info("/users/list");
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list",service.getList());
-		mav.setViewName("users/list");
+		mav.setViewName("users/list"); 
 		mav.setViewName("tiles/users/list");
 		logger.info("/users/list : end");
 		return mav;
+		//test
 	}
 	
 	
